@@ -26,6 +26,27 @@ form.addEventListener("submit", async (e) => {
   hideStatus();
 
   try {
+    // 1) Akun lokal hasil pendaftaran di signup.html (password disimpan sebagai hash).
+    const localUser = findUserByUsername(username);
+    if (localUser) {
+      const passwordOk = await verifyPassword(password, localUser.passwordHash);
+
+      if (passwordOk === null) {
+        showStatus("Akun ini dibuat lewat https. Buka lewat Live Server untuk bisa memverifikasi passwordnya.", "error");
+        return;
+      }
+
+      if (!passwordOk) {
+        showStatus("Username atau password salah.", "error");
+        return;
+      }
+
+      completeLogin(localUser.firstName);
+      return;
+    }
+
+    // 2) Autentikasi API: cocokkan username & password dengan data pengguna
+    // dari https://dummyjson.com/users.
     const res = await fetch(USERS_API);
 
     if (!res.ok) {
@@ -35,8 +56,6 @@ form.addEventListener("submit", async (e) => {
     const data = await res.json();
     const users = data.users || [];
 
-    // Autentikasi API: cocokkan username & password dengan data pengguna
-    // dari https://dummyjson.com/users.
     const matchedUser = users.find(
       (u) => u.username === username && u.password === password
     );
@@ -46,15 +65,7 @@ form.addEventListener("submit", async (e) => {
       return;
     }
 
-    // Session Persistence: simpan firstName pengguna.
-    localStorage.setItem("firstName", matchedUser.firstName);
-
-    showStatus("Login berhasil! Mengarahkan...", "success");
-
-    // Auto Redirect ke halaman katalog produk.
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 400);
+    completeLogin(matchedUser.firstName);
   } catch (err) {
     showStatus("Terjadi kesalahan. Periksa koneksi Anda dan coba lagi.", "error");
     console.error(err);
@@ -62,6 +73,16 @@ form.addEventListener("submit", async (e) => {
     setLoading(false);
   }
 });
+
+// Session Persistence + Auto Redirect
+function completeLogin(firstName) {
+  localStorage.setItem("firstName", firstName);
+  showStatus("Login berhasil! Mengarahkan...", "success");
+
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 400);
+}
 
 // UI helpers 
 function setLoading(isLoading) {
