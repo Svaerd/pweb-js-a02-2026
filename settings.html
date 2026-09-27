@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="navbar-brand">Mini Shopee</a>
+
+    <div class="navbar-right">
+        <a href="cart.html" id="cart-badge" class="cart-badge">
+          <img src="img/Shopicons_Regular_Cart3.svg" alt="Keranjang" class="cart-icon" />
+          <span id="cart-count">0</span>
+        </a>
+
+        <div class="account-menu">
+          <button id="account-btn" class="account-icon-btn" aria-haspopup="true" aria-expanded="false" aria-label="Menu akun">
+            <img src="img/Shopicons_Regular_Account.svg" alt="Akun" class="account-icon-img" />
+          </button>
+
+          <div id="account-dropdown" class="account-dropdown" hidden>
+            <p id="dropdown-username" class="dropdown-username"></p>
+            <a href="wishlist.html" class="dropdown-item">
+              <img src="img/Shopicons_Regular_Heart.svg" alt="" class="dropdown-icon" /> Wishlist
+            </a>
+            <a href="settings.html" class="dropdown-item">
+              <img src="img/Shopicons_Regular_Settings.svg" alt="" class="dropdown-icon" /> Setting
+            </a>
+            <button id="logout-btn" class="dropdown-item dropdown-logout" type="button">⎋ Keluar</button>
+          </div>
+        </div>
+      </div>
+  </header>
+
+  <h1 class="page-title">Setting</h1>
+
+  <div class="settings-layout">
+
+    <nav class="settings-sidebar">
+      <button class="settings-nav-item active" data-section="profile">Profil</button>
+    </nav>
+
+    <div class="settings-content">
+
+      <section id="section-profile" class="settings-section">
+
+        <div class="settings-card">
+          <h2>Profil</h2>
+          <p class="settings-card-desc">Perbarui informasi akunmu.</p>
+
+          <form id="profile-form">
+            <label for="profile-name">Nama</label>
+            <input type="text" id="profile-name" required />
+
+            <label for="profile-gender">Jenis Kelamin</label>
+            <select id="profile-gender">
+              <option value="">Pilih...</option>
+              <option value="male">Laki-laki</option>
+              <option value="female">Perempuan</option>
+            </select>
+
+            <label for="profile-email">Email</label>
+            <input type="email" id="profile-email" placeholder="nama@email.com" />
+
+            <label for="profile-phone">Nomor HP</label>
+            <input type="tel" id="profile-phone" placeholder="08xxxxxxxxxx" />
+
+            <button type="submit" id="profile-save-btn">Simpan Perubahan</button>
+            <p id="profile-status" class="status-message" hidden></p>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/theme.js" defer></script>
+  <script src="js/account-menu.js" defer></script>
+  <script src="js/settings.js" defer></script>
+</body>
+</html>
