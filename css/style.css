@@ -240,6 +240,7 @@ body.theme-light .account-icon-img {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-left: auto;
 }
 
 .cart-badge {
