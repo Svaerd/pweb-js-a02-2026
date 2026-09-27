@@ -16,6 +16,7 @@ const sortSelect = document.getElementById("sort-select");
 const loadMoreBtn = document.getElementById("load-more-btn");
 const globalError = document.getElementById("global-error");
 const cartCount = document.getElementById("cart-count");
+const cartTotal = document.getElementById("cart-total");
 const resultCount = document.getElementById("result-count");
 const modalWishlistBtn = document.getElementById("modal-wishlist-btn");
 
@@ -205,12 +206,21 @@ modalWishlistBtn.addEventListener("click", () => {
 });
 
 modalClose.addEventListener("click", () => {
-  modal.hidden = true;
+  closeModal();
 });
 
 modal.addEventListener("click", (e) => {
-  if (e.target === modal) modal.hidden = true;
+  if (e.target === modal) closeModal();
 });
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !modal.hidden) closeModal();
+});
+
+function closeModal() {
+  modal.hidden = true;
+  currentModalProductId = null;
+}
 
 // CART (Local Storage CRUD)
 function getCart() {
@@ -222,7 +232,12 @@ function getCart() {
 }
 
 function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  // Keranjang kosong -> hapus key-nya (removeItem), bukan simpan array kosong.
+  if (cart.length === 0) {
+    localStorage.removeItem(CART_KEY);
+  } else {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  }
   updateCartBadge();
 }
 
@@ -255,6 +270,11 @@ function updateCartBadge() {
 
   cartCount.textContent = totalQty;
   cartCount.title = `Total: $${totalPrice.toFixed(2)}`;
+
+  // Total belanja ditampilkan langsung di navbar, bukan hanya di atribut title.
+  if (cartTotal) {
+    cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+  }
 }
 
 // WISHLIST (Local Storage CRUD)

@@ -30,7 +30,12 @@ function getCart() {
 }
 
 function saveCart(list) {
-  localStorage.setItem(CART_KEY, JSON.stringify(list));
+  // Keranjang kosong -> hapus key-nya (removeItem), bukan simpan array kosong.
+  if (list.length === 0) {
+    localStorage.removeItem(CART_KEY);
+  } else {
+    localStorage.setItem(CART_KEY, JSON.stringify(list));
+  }
 }
 
 // LOAD
@@ -103,7 +108,7 @@ function createRowHTML(item) {
 
       <p class="cart-row-subtotal">$${subtotal}</p>
 
-      <button class="remove-cart-btn" data-id="${item.id}" aria-label="Hapus barang">🗑</button>
+      <button class="remove-cart-btn" data-id="${item.id}" aria-label="Hapus barang">Hapus</button>
     </div>
   `;
 }
