@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="navbar-brand">Mini Shopee</a>
+
+    <div class="navbar-right">
+        <a href="cart.html" id="cart-badge" class="cart-badge">
+          <img src="img/Shopicons_Regular_Cart3.svg" alt="Keranjang" class="cart-icon" />
+          <span id="cart-count">0</span>
+        </a>
+
+        <div class="account-menu">
+          <button id="account-btn" class="account-icon-btn" aria-haspopup="true" aria-expanded="false" aria-label="Menu akun">
+            <img src="img/Shopicons_Regular_Account.svg" alt="Akun" class="account-icon-img" />
+          </button>
+
+          <div id="account-dropdown" class="account-dropdown" hidden>
+            <p id="dropdown-username" class="dropdown-username"></p>
+            <a href="wishlist.html" class="dropdown-item">
+              <img src="img/Shopicons_Regular_Heart.svg" alt="" class="dropdown-icon" /> Wishlist
+            </a>
+            <a href="settings.html" class="dropdown-item">
+              <img src="img/Shopicons_Regular_Settings.svg" alt="" class="dropdown-icon" /> Setting
+            </a>
+            <button id="logout-btn" class="dropdown-item dropdown-logout" type="button">⎋ Keluar</button>
+          </div>
+        </div>
+      </div>
+  </header>
+
+  <h1 class="page-title">Keranjang Belanja</h1>
+
+  <div id="empty-cart-message" class="empty-message" hidden>
+    Keranjangmu masih kosong.
+    <a href="index.html" class="switch-view-link">Yuk mulai belanja →</a>
+  </div>
+
+  <div id="cart-layout" class="cart-layout">
+
+    <section class="cart-list-wrapper">
+      <div class="cart-select-all-row">
+        <label class="cart-checkbox-label">
+          <input type="checkbox" id="select-all-checkbox" />
+          Pilih Semua
+        </label>
+      </div>
+
+      <div id="cart-list" class="cart-list"></div>
+    </section>
+
+    <aside class="cart-summary">
+      <h2>Ringkasan Belanja</h2>
+      <div class="cart-summary-row">
+        <span>Barang dipilih</span>
+        <span id="summary-item-count">0</span>
+      </div>
+      <div class="cart-summary-row cart-summary-total">
+        <span>Total Harga</span>
+        <span id="summary-total-price">$0.00</span>
+      </div>
+      <button id="checkout-btn">Lanjut ke Pembayaran</button>
+      <p id="checkout-status" class="status-message" hidden></p>
+    </aside>
+
+  </div>
+
+  <script src="js/theme.js" defer></script>
+  <script src="js/account-menu.js" defer></script>
+  <script src="js/cart.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="navbar-brand">Mini Shopee</a>
+
+    <div class="navbar-right">
+        <a href="cart.html" id="cart-badge" class="cart-badge">
+          <img src="img/Shopicons_Regular_Cart3.svg" alt="Keranjang" class="cart-icon" />
+          <span id="cart-count">0</span>
+        </a>
+
+        <div class="account-menu">
+          <button id="account-btn" class="account-icon-btn" aria-haspopup="true" aria-expanded="false" aria-label="Menu akun">
+            <img src="img/Shopicons_Regular_Account.svg" alt="Akun" class="account-icon-img" />
+          </button>
+
+          <div id="account-dropdown" class="account-dropdown" hidden>
+            <p id="dropdown-username" class="dropdown-username"></p>
+            <a href="wishlist.html" class="dropdown-item">
+              <img src="img/Shopicons_Regular_Heart.svg" alt="" class="dropdown-icon" /> Wishlist
+            </a>
+            <a href="settings.html" class="dropdown-item">
+              <img src="img/Shopicons_Regular_Settings.svg" alt="" class="dropdown-icon" /> Setting
+            </a>
+            <button id="logout-btn" class="dropdown-item dropdown-logout" type="button">⎋ Keluar</button>
+          </div>
+        </div>
+      </div>
+  </header>
+
+  <h1 class="page-title">Wishlist Saya</h1>
+
+  <section class="toolbar">
+    <div class="navbar-search">
+      <img src="img/Shopicons_Regular_Search.svg" alt="" class="search-icon" />
+      <input type="text" id="search-input" placeholder="Cari di wishlist..." />
+    </div>
+
+    <select id="category-filter">
+      <option value="">Semua kategori</option>
+    </select>
+
+    <select id="sort-select">
+      <option value="">Urutkan</option>
+      <option value="price-asc">Harga: Termurah</option>
+      <option value="price-desc">Harga: Termahal</option>
+      <option value="rating-desc">Rating tertinggi</option>
+    </select>
+
+    <span id="result-count"></span>
+  </section>
+
+  <p id="empty-wishlist-message" class="empty-message" hidden>
+    Wishlist kamu masih kosong. Tambahkan produk favoritmu dari halaman katalog!
+  </p>
+
+  <main id="wishlist-grid" class="product-grid"></main>
+
+  <script src="js/theme.js" defer></script>
+  <script src="js/account-menu.js" defer></script>
+  <script src="js/wishlist.js" defer></script>
+</body>
+</html>

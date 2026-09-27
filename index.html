@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalog</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-search">
+      <img src="img/Shopicons_Regular_Search.svg" alt="" class="search-icon" />
+      <input type="text" id="search-input" placeholder="Cari produk atau kategori..." />
+    </div>
+
+    <div class="navbar-right">
+      <a href="cart.html" id="cart-badge" class="cart-badge"><img src="img/Shopicons_Regular_Cart3.svg" alt="Keranjang" class="cart-icon" /> <span id="cart-count">0</span></a>
+
+      <div class="account-menu">
+        <button id="account-btn" class="account-icon-btn" aria-haspopup="true" aria-expanded="false" aria-label="Menu akun">
+          <img src="img/Shopicons_Regular_Account.svg" alt="Akun" class="account-icon-img" />
+        </button>
+
+        <div id="account-dropdown" class="account-dropdown" hidden>
+          <p id="dropdown-username" class="dropdown-username"></p>
+          <a href="wishlist.html" class="dropdown-item"><img src="img/Shopicons_Regular_Heart.svg" alt="" class="dropdown-icon" /> Wishlist</a>
+          <a href="settings.html" class="dropdown-item"><img src="img/Shopicons_Regular_Settings.svg" alt="" class="dropdown-icon" /> Setting</a>
+          <button id="logout-btn" class="dropdown-item dropdown-logout" type="button">⎋ Keluar</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="toolbar">
+    <select id="category-filter">
+      <option value="">Semua kategori</option>
+
+    </select>
+
+    <select id="sort-select">
+      <option value="">Urutkan</option>
+      <option value="price-asc">Harga: Termurah</option>
+      <option value="price-desc">Harga: Termahal</option>
+      <option value="rating-desc">Rating tertinggi</option>
+    </select>
+
+    <span id="result-count"></span>
+  </section>
+
+  <p id="global-error" class="status-message" hidden></p>
+
+  <main id="product-grid" class="product-grid">
+  </main>
+
+  <div class="load-more-wrapper">
+    <button id="load-more-btn">Muat lebih banyak</button>
+  </div>
+
+  <div id="product-modal" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <span id="modal-category" class="modal-category"></span>
+      <img id="modal-image" src="" alt="" />
+      <h2 id="modal-title"></h2>
+      <p id="modal-brand"></p>
+      <p id="modal-price-rating"></p>
+      <p id="modal-stock"></p>
+      <p id="modal-description"></p>
+      <div class="modal-actions">
+        <button id="modal-add-cart">Tambah ke Keranjang</button>
+        <button id="modal-wishlist-btn" class="wishlist-icon-btn" aria-label="Tambah ke wishlist">
+          <img src="img/Shopicons_Regular_Heart.svg" alt="" class="wishlist-heart-img" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/theme.js" defer></script>
+  <script src="js/account-menu.js" defer></script>
+  <script src="js/catalog.js" defer></script>
+</body>
+</html>
