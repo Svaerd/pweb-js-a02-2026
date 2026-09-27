@@ -1,14 +1,31 @@
+// Tema disimpan sebagai "light" atau "dark" (default). Dipakai bersama dengan
+// settings.js lewat class .theme-light pada <body>.
+const THEME_KEY = "theme";
+
+function applyStoredTheme() {
+  if (localStorage.getItem(THEME_KEY) === "light") {
+    document.body.classList.add("theme-light");
+  }
+}
+
 function initAccountMenu() {
   const accountBtn = document.getElementById("account-btn");
   const dropdown = document.getElementById("account-dropdown");
   const dropdownUsername = document.getElementById("dropdown-username");
   const logoutBtn = document.getElementById("logout-btn");
+  const welcome = document.querySelector("[data-welcome]");
+
+  applyStoredTheme();
 
   if (!accountBtn || !dropdown) return;
 
   const firstName = localStorage.getItem("firstName");
   if (dropdownUsername) {
     dropdownUsername.textContent = firstName ? `Halo, ${firstName}` : "";
+  }
+
+  if (welcome) {
+    welcome.textContent = firstName ? `Selamat datang, ${firstName}` : "";
   }
 
   accountBtn.addEventListener("click", (e) => {

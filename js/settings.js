@@ -1,5 +1,7 @@
 const PROFILE_KEY = "profile";
 const CART_KEY = "cart";
+// THEME_KEY sengaja tidak dideklarasikan di sini: sudah ada di account-menu.js.
+// Dua script klasik berbagi scope global, jadi const kembar = SyntaxError.
 
 // DOM refs 
 const profileForm = document.getElementById("profile-form");
@@ -83,6 +85,20 @@ profileForm.addEventListener("submit", (e) => {
   }, 2500);
 });
 
+// THEME
+function initThemeToggle() {
+  if (!darkModeToggle) return;
+
+  const isLight = localStorage.getItem(THEME_KEY) === "light";
+  darkModeToggle.checked = isLight;
+  document.body.classList.toggle("theme-light", isLight);
+
+  darkModeToggle.addEventListener("change", () => {
+    document.body.classList.toggle("theme-light", darkModeToggle.checked);
+    localStorage.setItem(THEME_KEY, darkModeToggle.checked ? "light" : "dark");
+  });
+}
+
 // CART BADGE (kept in sync across pages)
 function updateCartBadge() {
   try {
@@ -94,5 +110,6 @@ function updateCartBadge() {
 }
 
 checkAuthGuard();
+initThemeToggle();
 loadProfileIntoForm();
 updateCartBadge();
